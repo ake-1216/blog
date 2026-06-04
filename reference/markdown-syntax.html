@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown 语法速查 - 我的极速博客</title>
+  <meta name="description" content="无序列表：">
+<meta name="keywords" content="reference, syntax">
+<meta property="og:title" content="Markdown 语法速查 - 我的极速博客">
+<meta property="og:description" content="无序列表：">
+<meta property="og:type" content="article">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/prism.css">
+</head>
+<body>
+  <div class="mobile-topbar" id="mobile-topbar">
+    <button class="toggle-nav" onclick="toggleSidebar('left')" aria-label="导航菜单">☰ 导航</button>
+    <span class="topbar-title">我的极速博客</span>
+    <button class="toggle-toc" onclick="toggleSidebar('right')" aria-label="侧边栏">☰ 标签</button>
+  </div>
+  <div class="overlay" id="overlay" onclick="closeSidebars()"></div>
+  <div class="layout">
+    <aside class="sidebar" id="left-sidebar">
+      <h2>我的极速博客</h2>
+      <ul>
+        <li><a href="/index.html">🏠 首页</a></li>
+        <li class="cat-group">
+<span class="cat-toggle" data-cat="guide" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/guide/index.html">📁 guide (6)</a>
+<ul class="cat-pages" style="display:none">
+<li class="cat-group">
+<span class="cat-toggle" data-cat="guide/advanced" onclick="toggleCat(this)" style="padding-left:12px">▸</span>
+<a href="/category/guide/advanced/index.html">📁 advanced (1)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:28px"><a href="/guide/advanced/theme-development.html">主题开发</a></li>
+</ul>
+</li>
+<li style="padding-left:16px"><a href="/guide/migration.html">从 VitePress 迁移</a></li>
+<li style="padding-left:16px"><a href="/guide/faq.html">常见问题</a></li>
+<li style="padding-left:16px"><a href="/guide/deployment.html">部署指南</a></li>
+<li style="padding-left:16px"><a href="/guide/frontmatter.html">Frontmatter 语法</a></li>
+<li style="padding-left:16px"><a href="/guide/configuration.html">配置指南</a></li>
+<li style="padding-left:16px"><a href="/guide/getting-started.html">快速开始</a></li>
+</ul>
+</li>
+<li class="cat-group">
+<span class="cat-toggle" data-cat="reference" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/reference/index.html" style="font-weight:600;">📁 reference (3)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:16px"><a href="/reference/cli-commands.html">CLI 命令参考</a></li>
+<li style="padding-left:16px"><a href="/reference/markdown-syntax.html">Markdown 语法速查</a></li>
+<li style="padding-left:16px"><a href="/reference/bun-api.html">Bun API 参考</a></li>
+</ul>
+</li>
+<li class="cat-group">
+<span class="cat-toggle" data-cat="未分类" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/未分类/index.html">📁 未分类 (1)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:16px"><a href="/app-action.html">软件清单整理</a></li>
+</ul>
+</li>
+      </ul>
+    </aside>
+    <div class="main"><div class="breadcrumb"><a href="/index.html">首页</a></div>
+<h1>Markdown 语法速查</h1>
+<div class="article-meta">
+  <span>📅 2024-04-15</span>
+  <span>📂 <a href="/category/reference/index.html">reference</a></span>
+</div>
+<div class="article-meta"><a href="/tag/reference/index.html" class="tag">reference</a>
+<a href="/tag/syntax/index.html" class="tag">syntax</a></div>
+<h1 id="markdown-语法速查">Markdown 语法速查</h1>
+<h2 id="标题">标题</h2>
+<pre><code class="language-markdown"># H1 标题
+## H2 标题
+### H3 标题
+</code></pre>
+<h2 id="文本样式">文本样式</h2>
+<ul>
+<li><strong>粗体</strong> <code>**粗体**</code></li>
+<li><em>斜体</em> <code>*斜体*</code></li>
+<li><del>删除线</del> <code>~~删除线~~</code></li>
+<li><code>行内代码</code> <code>`行内代码`</code></li>
+</ul>
+<h2 id="列表">列表</h2>
+<p>无序列表：</p>
+<pre><code class="language-markdown">- 项目 1
+- 项目 2
+  - 子项目
+</code></pre>
+<p>有序列表：</p>
+<pre><code class="language-markdown">1. 第一项
+2. 第二项
+3. 第三项
+</code></pre>
+<h2 id="代码块">代码块</h2>
+<pre><code class="language-markdown">```typescript
+function hello() {
+  console.log(&quot;Hello World&quot;);
+}
+```
+</code></pre>
+<h2 id="引用">引用</h2>
+<pre><code class="language-markdown">&gt; 这是一段引用文字
+</code></pre>
+<h2 id="链接和图片">链接和图片</h2>
+<pre><code class="language-markdown">[链接文字](https://example.com)
+![图片描述](image.png)
+</code></pre>
+<h2 id="表格">表格</h2>
+<pre><code class="language-markdown">| 列1 | 列2 | 列3 |
+|-----|-----|-----|
+| A   | B   | C   |
+</code></pre>
+
+</div>
+    <aside class="right-sidebar" id="right-sidebar">
+      <h3>本页目录</h3><ul><li style="padding-left:0px"><a href="#markdown-语法速查">Markdown 语法速查</a></li><li style="padding-left:12px"><a href="#标题">标题</a></li><li style="padding-left:12px"><a href="#文本样式">文本样式</a></li><li style="padding-left:12px"><a href="#列表">列表</a></li><li style="padding-left:12px"><a href="#代码块">代码块</a></li><li style="padding-left:12px"><a href="#引用">引用</a></li><li style="padding-left:12px"><a href="#链接和图片">链接和图片</a></li><li style="padding-left:12px"><a href="#表格">表格</a></li></ul>
+    </aside>
+  </div>
+  <script src="/assets/prism.js"></script>
+  <script src="/assets/script.js"></script>
+</body>
+</html>

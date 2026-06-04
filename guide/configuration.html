@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>配置指南 - 我的极速博客</title>
+  <meta name="description" content="站点配置通过 site.config.ts 文件进行管理。">
+<meta name="keywords" content="guide, config">
+<meta property="og:title" content="配置指南 - 我的极速博客">
+<meta property="og:description" content="站点配置通过 site.config.ts 文件进行管理。">
+<meta property="og:type" content="article">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/prism.css">
+</head>
+<body>
+  <div class="mobile-topbar" id="mobile-topbar">
+    <button class="toggle-nav" onclick="toggleSidebar('left')" aria-label="导航菜单">☰ 导航</button>
+    <span class="topbar-title">我的极速博客</span>
+    <button class="toggle-toc" onclick="toggleSidebar('right')" aria-label="侧边栏">☰ 标签</button>
+  </div>
+  <div class="overlay" id="overlay" onclick="closeSidebars()"></div>
+  <div class="layout">
+    <aside class="sidebar" id="left-sidebar">
+      <h2>我的极速博客</h2>
+      <ul>
+        <li><a href="/index.html">🏠 首页</a></li>
+        <li class="cat-group">
+<span class="cat-toggle" data-cat="guide" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/guide/index.html" style="font-weight:600;">📁 guide (6)</a>
+<ul class="cat-pages" style="display:none">
+<li class="cat-group">
+<span class="cat-toggle" data-cat="guide/advanced" onclick="toggleCat(this)" style="padding-left:12px">▸</span>
+<a href="/category/guide/advanced/index.html">📁 advanced (1)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:28px"><a href="/guide/advanced/theme-development.html">主题开发</a></li>
+</ul>
+</li>
+<li style="padding-left:16px"><a href="/guide/migration.html">从 VitePress 迁移</a></li>
+<li style="padding-left:16px"><a href="/guide/faq.html">常见问题</a></li>
+<li style="padding-left:16px"><a href="/guide/deployment.html">部署指南</a></li>
+<li style="padding-left:16px"><a href="/guide/frontmatter.html">Frontmatter 语法</a></li>
+<li style="padding-left:16px"><a href="/guide/configuration.html">配置指南</a></li>
+<li style="padding-left:16px"><a href="/guide/getting-started.html">快速开始</a></li>
+</ul>
+</li>
+<li class="cat-group">
+<span class="cat-toggle" data-cat="reference" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/reference/index.html">📁 reference (3)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:16px"><a href="/reference/cli-commands.html">CLI 命令参考</a></li>
+<li style="padding-left:16px"><a href="/reference/markdown-syntax.html">Markdown 语法速查</a></li>
+<li style="padding-left:16px"><a href="/reference/bun-api.html">Bun API 参考</a></li>
+</ul>
+</li>
+<li class="cat-group">
+<span class="cat-toggle" data-cat="未分类" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/未分类/index.html">📁 未分类 (1)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:16px"><a href="/app-action.html">软件清单整理</a></li>
+</ul>
+</li>
+      </ul>
+    </aside>
+    <div class="main"><div class="breadcrumb"><a href="/index.html">首页</a></div>
+<h1>配置指南</h1>
+<div class="article-meta">
+  <span>📅 2024-03-20</span>
+  <span>📂 <a href="/category/guide/index.html">guide</a></span>
+</div>
+<div class="article-meta"><a href="/tag/guide/index.html" class="tag">guide</a>
+<a href="/tag/config/index.html" class="tag">config</a></div>
+<h1 id="配置指南">配置指南</h1>
+<p>站点配置通过 <code>site.config.ts</code> 文件进行管理。</p>
+<h2 id="基本配置">基本配置</h2>
+<pre><code class="language-typescript">import type { SiteConfig } from &quot;./src/types&quot;;
+
+const config: SiteConfig = {
+  title: &quot;My Docs&quot;,
+  description: &quot;一个静态文档站点&quot;,
+  theme: &quot;default&quot;,
+  pagination: {
+    perPage: 10,
+  },
+};
+
+export default config;
+</code></pre>
+<h2 id="配置项说明">配置项说明</h2>
+<h3 id="title">title</h3>
+<p>站点标题，会显示在浏览器标签页和首页。</p>
+<h3 id="description">description</h3>
+<p>站点描述，显示在首页标题下方。</p>
+<h3 id="theme">theme</h3>
+<p>使用的主题名称，对应 <code>themes/</code> 目录下的主题文件夹。</p>
+<p>当前内置主题：<code>default</code></p>
+<h3 id="pagination-perpage">pagination.perPage</h3>
+<p>每页显示的文章数量，默认值为 <code>10</code>。</p>
+
+</div>
+    <aside class="right-sidebar" id="right-sidebar">
+      <h3>本页目录</h3><ul><li style="padding-left:0px"><a href="#配置指南">配置指南</a></li><li style="padding-left:12px"><a href="#基本配置">基本配置</a></li><li style="padding-left:12px"><a href="#配置项说明">配置项说明</a></li><li style="padding-left:24px"><a href="#title">title</a></li><li style="padding-left:24px"><a href="#description">description</a></li><li style="padding-left:24px"><a href="#theme">theme</a></li><li style="padding-left:24px"><a href="#pagination-perpage">pagination.perPage</a></li></ul>
+    </aside>
+  </div>
+  <script src="/assets/prism.js"></script>
+  <script src="/assets/script.js"></script>
+</body>
+</html>

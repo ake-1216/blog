@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>主题开发 - 我的极速博客</title>
+  <meta name="description" content="你可以创建自定义主题来定制站点外观。">
+<meta name="keywords" content="advanced, theme">
+<meta property="og:title" content="主题开发 - 我的极速博客">
+<meta property="og:description" content="你可以创建自定义主题来定制站点外观。">
+<meta property="og:type" content="article">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/prism.css">
+</head>
+<body>
+  <div class="mobile-topbar" id="mobile-topbar">
+    <button class="toggle-nav" onclick="toggleSidebar('left')" aria-label="导航菜单">☰ 导航</button>
+    <span class="topbar-title">我的极速博客</span>
+    <button class="toggle-toc" onclick="toggleSidebar('right')" aria-label="侧边栏">☰ 标签</button>
+  </div>
+  <div class="overlay" id="overlay" onclick="closeSidebars()"></div>
+  <div class="layout">
+    <aside class="sidebar" id="left-sidebar">
+      <h2>我的极速博客</h2>
+      <ul>
+        <li><a href="/index.html">🏠 首页</a></li>
+        <li class="cat-group">
+<span class="cat-toggle" data-cat="guide" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/guide/index.html">📁 guide (6)</a>
+<ul class="cat-pages" style="display:none">
+<li class="cat-group">
+<span class="cat-toggle" data-cat="guide/advanced" onclick="toggleCat(this)" style="padding-left:12px">▸</span>
+<a href="/category/guide/advanced/index.html" style="font-weight:600;">📁 advanced (1)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:28px"><a href="/guide/advanced/theme-development.html">主题开发</a></li>
+</ul>
+</li>
+<li style="padding-left:16px"><a href="/guide/migration.html">从 VitePress 迁移</a></li>
+<li style="padding-left:16px"><a href="/guide/faq.html">常见问题</a></li>
+<li style="padding-left:16px"><a href="/guide/deployment.html">部署指南</a></li>
+<li style="padding-left:16px"><a href="/guide/frontmatter.html">Frontmatter 语法</a></li>
+<li style="padding-left:16px"><a href="/guide/configuration.html">配置指南</a></li>
+<li style="padding-left:16px"><a href="/guide/getting-started.html">快速开始</a></li>
+</ul>
+</li>
+<li class="cat-group">
+<span class="cat-toggle" data-cat="reference" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/reference/index.html">📁 reference (3)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:16px"><a href="/reference/cli-commands.html">CLI 命令参考</a></li>
+<li style="padding-left:16px"><a href="/reference/markdown-syntax.html">Markdown 语法速查</a></li>
+<li style="padding-left:16px"><a href="/reference/bun-api.html">Bun API 参考</a></li>
+</ul>
+</li>
+<li class="cat-group">
+<span class="cat-toggle" data-cat="未分类" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/未分类/index.html">📁 未分类 (1)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:16px"><a href="/app-action.html">软件清单整理</a></li>
+</ul>
+</li>
+      </ul>
+    </aside>
+    <div class="main"><div class="breadcrumb"><a href="/index.html">首页</a></div>
+<h1>主题开发</h1>
+<div class="article-meta">
+  <span>📅 2024-05-10</span>
+  <span>📂 <a href="/category/guide/advanced/index.html">guide/advanced</a></span>
+</div>
+<div class="article-meta"><a href="/tag/advanced/index.html" class="tag">advanced</a>
+<a href="/tag/theme/index.html" class="tag">theme</a></div>
+<h1 id="主题开发">主题开发</h1>
+<p>你可以创建自定义主题来定制站点外观。</p>
+<h2 id="主题目录结构">主题目录结构</h2>
+<pre><code>themes/&lt;your-theme&gt;/
+├── layout.html      # 基础布局模板
+├── home.html        # 首页模板
+├── list.html        # 列表页模板
+├── detail.html      # 详情页模板
+└── assets/          # 静态资源
+    └── style.css
+</code></pre>
+<h2 id="模板语法">模板语法</h2>
+<p>主题使用 <code>{{placeholder}}</code> 语法进行内容替换。</p>
+<h3 id="简单变量">简单变量</h3>
+<pre><code class="language-html">&lt;h1&gt;{{title}}&lt;/h1&gt;
+&lt;p&gt;{{content}}&lt;/p&gt;
+</code></pre>
+<h3 id="条件块">条件块</h3>
+<p>使用 <code>{{#key}}...{{/key}}</code> 包裹条件内容：</p>
+<pre><code class="language-html">{{#has_date}}
+&lt;span&gt;{{date}}&lt;/span&gt;
+{{/has_date}}
+</code></pre>
+<h2 id="可用变量">可用变量</h2>
+<table>
+<thead>
+<tr><th>变量</th><th>使用位置</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td><code>{{title}}</code></td><td>所有模板</td><td>页面标题</td></tr>
+<tr><td><code>{{content}}</code></td><td>layout, detail</td><td>页面正文 HTML</td></tr>
+<tr><td><code>{{styles}}</code></td><td>layout</td><td>CSS 样式</td></tr>
+<tr><td><code>{{nav_html}}</code></td><td>layout</td><td>侧栏导航</td></tr>
+<tr><td><code>{{articles_html}}</code></td><td>home, list</td><td>文章列表 HTML</td></tr>
+<tr><td><code>{{pagination_html}}</code></td><td>list</td><td>分页导航 HTML</td></tr>
+<tr><td><code>{{tags_html}}</code></td><td>detail</td><td>标签链接</td></tr>
+<tr><td><code>{{breadcrumb_html}}</code></td><td>list, detail</td><td>面包屑导航</td></tr>
+</tbody>
+</table>
+
+</div>
+    <aside class="right-sidebar" id="right-sidebar">
+      <h3>本页目录</h3><ul><li style="padding-left:0px"><a href="#主题开发">主题开发</a></li><li style="padding-left:12px"><a href="#主题目录结构">主题目录结构</a></li><li style="padding-left:12px"><a href="#模板语法">模板语法</a></li><li style="padding-left:24px"><a href="#简单变量">简单变量</a></li><li style="padding-left:24px"><a href="#条件块">条件块</a></li><li style="padding-left:12px"><a href="#可用变量">可用变量</a></li></ul>
+    </aside>
+  </div>
+  <script src="/assets/prism.js"></script>
+  <script src="/assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>部署指南 - 我的极速博客</title>
+  <meta name="description" content="静态站点可以部署到各种平台。">
+<meta name="keywords" content="guide, deployment">
+<meta property="og:title" content="部署指南 - 我的极速博客">
+<meta property="og:description" content="静态站点可以部署到各种平台。">
+<meta property="og:type" content="article">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/prism.css">
+</head>
+<body>
+  <div class="mobile-topbar" id="mobile-topbar">
+    <button class="toggle-nav" onclick="toggleSidebar('left')" aria-label="导航菜单">☰ 导航</button>
+    <span class="topbar-title">我的极速博客</span>
+    <button class="toggle-toc" onclick="toggleSidebar('right')" aria-label="侧边栏">☰ 标签</button>
+  </div>
+  <div class="overlay" id="overlay" onclick="closeSidebars()"></div>
+  <div class="layout">
+    <aside class="sidebar" id="left-sidebar">
+      <h2>我的极速博客</h2>
+      <ul>
+        <li><a href="/index.html">🏠 首页</a></li>
+        <li class="cat-group">
+<span class="cat-toggle" data-cat="guide" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/guide/index.html" style="font-weight:600;">📁 guide (6)</a>
+<ul class="cat-pages" style="display:none">
+<li class="cat-group">
+<span class="cat-toggle" data-cat="guide/advanced" onclick="toggleCat(this)" style="padding-left:12px">▸</span>
+<a href="/category/guide/advanced/index.html">📁 advanced (1)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:28px"><a href="/guide/advanced/theme-development.html">主题开发</a></li>
+</ul>
+</li>
+<li style="padding-left:16px"><a href="/guide/migration.html">从 VitePress 迁移</a></li>
+<li style="padding-left:16px"><a href="/guide/faq.html">常见问题</a></li>
+<li style="padding-left:16px"><a href="/guide/deployment.html">部署指南</a></li>
+<li style="padding-left:16px"><a href="/guide/frontmatter.html">Frontmatter 语法</a></li>
+<li style="padding-left:16px"><a href="/guide/configuration.html">配置指南</a></li>
+<li style="padding-left:16px"><a href="/guide/getting-started.html">快速开始</a></li>
+</ul>
+</li>
+<li class="cat-group">
+<span class="cat-toggle" data-cat="reference" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/reference/index.html">📁 reference (3)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:16px"><a href="/reference/cli-commands.html">CLI 命令参考</a></li>
+<li style="padding-left:16px"><a href="/reference/markdown-syntax.html">Markdown 语法速查</a></li>
+<li style="padding-left:16px"><a href="/reference/bun-api.html">Bun API 参考</a></li>
+</ul>
+</li>
+<li class="cat-group">
+<span class="cat-toggle" data-cat="未分类" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/未分类/index.html">📁 未分类 (1)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:16px"><a href="/app-action.html">软件清单整理</a></li>
+</ul>
+</li>
+      </ul>
+    </aside>
+    <div class="main"><div class="breadcrumb"><a href="/index.html">首页</a></div>
+<h1>部署指南</h1>
+<div class="article-meta">
+  <span>📅 2024-06-01</span>
+  <span>📂 <a href="/category/guide/index.html">guide</a></span>
+</div>
+<div class="article-meta"><a href="/tag/guide/index.html" class="tag">guide</a>
+<a href="/tag/deployment/index.html" class="tag">deployment</a></div>
+<h1 id="部署指南">部署指南</h1>
+<p>静态站点可以部署到各种平台。</p>
+<h2 id="本地预览">本地预览</h2>
+<p>构建完成后，直接在浏览器中打开 <code>dist/index.html</code> 即可预览。</p>
+<p>或者使用任意静态文件服务器：</p>
+<pre><code class="language-bash"># 使用 Bun
+bun --serve dist
+
+# 使用 Python
+python -m http.server -d dist 8000
+
+# 使用 Node.js
+npx serve dist
+</code></pre>
+<h2 id="部署到-github-pages">部署到 GitHub Pages</h2>
+<ol>
+<li>将 <code>dist/</code> 目录推送到 <code>gh-pages</code> 分支</li>
+<li>在仓库设置中启用 GitHub Pages</li>
+<li>选择 <code>gh-pages</code> 分支作为源</li>
+</ol>
+<h2 id="部署到飞书妙搭">部署到飞书妙搭</h2>
+<p>使用飞书妙搭的集成能力，将生成的 HTML 文件直接部署，获取可分享的访问链接。</p>
+<h2 id="ci-cd-自动构建">CI/CD 自动构建</h2>
+<p>可以配合 GitHub Actions 实现提交文档后自动构建和部署：</p>
+<pre><code class="language-yaml">name: Deploy Docs
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+      - run: bun install
+      - run: bun run main.ts
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+</code></pre>
+
+</div>
+    <aside class="right-sidebar" id="right-sidebar">
+      <h3>本页目录</h3><ul><li style="padding-left:0px"><a href="#部署指南">部署指南</a></li><li style="padding-left:12px"><a href="#本地预览">本地预览</a></li><li style="padding-left:12px"><a href="#部署到-github-pages">部署到 GitHub Pages</a></li><li style="padding-left:12px"><a href="#部署到飞书妙搭">部署到飞书妙搭</a></li><li style="padding-left:12px"><a href="#ci-cd-自动构建">CI/CD 自动构建</a></li></ul>
+    </aside>
+  </div>
+  <script src="/assets/prism.js"></script>
+  <script src="/assets/script.js"></script>
+</body>
+</html>

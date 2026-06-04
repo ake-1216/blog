@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>beginner - 我的极速博客</title>
+  <meta name="description" content="标签 beginner 下的文章列表">
+<meta name="keywords" content="beginner">
+<meta property="og:title" content="beginner - 我的极速博客">
+<meta property="og:description" content="标签 beginner 下的文章列表">
+<meta property="og:type" content="website">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/prism.css">
+</head>
+<body>
+  <div class="mobile-topbar" id="mobile-topbar">
+    <button class="toggle-nav" onclick="toggleSidebar('left')" aria-label="导航菜单">☰ 导航</button>
+    <span class="topbar-title">我的极速博客</span>
+    <button class="toggle-toc" onclick="toggleSidebar('right')" aria-label="侧边栏">☰ 标签</button>
+  </div>
+  <div class="overlay" id="overlay" onclick="closeSidebars()"></div>
+  <div class="layout">
+    <aside class="sidebar" id="left-sidebar">
+      <h2>我的极速博客</h2>
+      <ul>
+        <li><a href="/index.html">🏠 首页</a></li>
+        <li class="cat-group">
+<span class="cat-toggle" data-cat="guide" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/guide/index.html">📁 guide (6)</a>
+<ul class="cat-pages" style="display:none">
+<li class="cat-group">
+<span class="cat-toggle" data-cat="guide/advanced" onclick="toggleCat(this)" style="padding-left:12px">▸</span>
+<a href="/category/guide/advanced/index.html">📁 advanced (1)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:28px"><a href="/guide/advanced/theme-development.html">主题开发</a></li>
+</ul>
+</li>
+<li style="padding-left:16px"><a href="/guide/migration.html">从 VitePress 迁移</a></li>
+<li style="padding-left:16px"><a href="/guide/faq.html">常见问题</a></li>
+<li style="padding-left:16px"><a href="/guide/deployment.html">部署指南</a></li>
+<li style="padding-left:16px"><a href="/guide/frontmatter.html">Frontmatter 语法</a></li>
+<li style="padding-left:16px"><a href="/guide/configuration.html">配置指南</a></li>
+<li style="padding-left:16px"><a href="/guide/getting-started.html">快速开始</a></li>
+</ul>
+</li>
+<li class="cat-group">
+<span class="cat-toggle" data-cat="reference" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/reference/index.html">📁 reference (3)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:16px"><a href="/reference/cli-commands.html">CLI 命令参考</a></li>
+<li style="padding-left:16px"><a href="/reference/markdown-syntax.html">Markdown 语法速查</a></li>
+<li style="padding-left:16px"><a href="/reference/bun-api.html">Bun API 参考</a></li>
+</ul>
+</li>
+<li class="cat-group">
+<span class="cat-toggle" data-cat="未分类" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/未分类/index.html">📁 未分类 (1)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:16px"><a href="/app-action.html">软件清单整理</a></li>
+</ul>
+</li>
+      </ul>
+    </aside>
+    <div class="main"><div class="breadcrumb"><a href="/index.html">首页</a> / 标签 / beginner</div>
+<h1>标签：beginner</h1>
+<p style="color:var(--muted);margin-bottom:24px;">共 1 篇文章</p>
+<div class="article-card">
+  <h3><a href="/guide/getting-started.html">快速开始</a></h3>
+  <p>欢迎使用 Bun 静态站点生成器。本指南将帮助你快速上手。</p>
+  <div class="tags"><a href="/tag/guide/index.html" class="tag">guide</a>
+<a href="/tag/beginner/index.html" class="tag">beginner</a></div>
+</div>
+
+</div>
+    <aside class="right-sidebar" id="right-sidebar">
+      <h3>标签</h3><div class="tag-cloud"><a href="/tag/guide/index.html" class="tag" style="font-size:1.20em; margin:3px;">guide</a><a href="/tag/reference/index.html" class="tag" style="font-size:0.97em; margin:3px;">reference</a><a href="/tag/syntax/index.html" class="tag" style="font-size:0.90em; margin:3px;">syntax</a><a href="/tag/bun/index.html" class="tag" style="font-size:0.82em; margin:3px;">bun</a><a href="/tag/cli/index.html" class="tag" style="font-size:0.82em; margin:3px;">cli</a><a href="/tag/config/index.html" class="tag" style="font-size:0.82em; margin:3px;">config</a><a href="/tag/deployment/index.html" class="tag" style="font-size:0.82em; margin:3px;">deployment</a><a href="/tag/faq/index.html" class="tag" style="font-size:0.82em; margin:3px;">faq</a><a href="/tag/beginner/index.html" class="tag" style="font-size:0.82em; margin:3px;">beginner</a><a href="/tag/migration/index.html" class="tag" style="font-size:0.82em; margin:3px;">migration</a><a href="/tag/advanced/index.html" class="tag" style="font-size:0.82em; margin:3px;">advanced</a><a href="/tag/theme/index.html" class="tag" style="font-size:0.82em; margin:3px;">theme</a></div>
+    </aside>
+  </div>
+  <script src="/assets/prism.js"></script>
+  <script src="/assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>从 VitePress 迁移 - 我的极速博客</title>
+  <meta name="description" content="如果你已有 VitePress 项目，迁移到 Bun SSG 非常简单。">
+<meta name="keywords" content="guide, migration">
+<meta property="og:title" content="从 VitePress 迁移 - 我的极速博客">
+<meta property="og:description" content="如果你已有 VitePress 项目，迁移到 Bun SSG 非常简单。">
+<meta property="og:type" content="article">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/prism.css">
+</head>
+<body>
+  <div class="mobile-topbar" id="mobile-topbar">
+    <button class="toggle-nav" onclick="toggleSidebar('left')" aria-label="导航菜单">☰ 导航</button>
+    <span class="topbar-title">我的极速博客</span>
+    <button class="toggle-toc" onclick="toggleSidebar('right')" aria-label="侧边栏">☰ 标签</button>
+  </div>
+  <div class="overlay" id="overlay" onclick="closeSidebars()"></div>
+  <div class="layout">
+    <aside class="sidebar" id="left-sidebar">
+      <h2>我的极速博客</h2>
+      <ul>
+        <li><a href="/index.html">🏠 首页</a></li>
+        <li class="cat-group">
+<span class="cat-toggle" data-cat="guide" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/guide/index.html" style="font-weight:600;">📁 guide (6)</a>
+<ul class="cat-pages" style="display:none">
+<li class="cat-group">
+<span class="cat-toggle" data-cat="guide/advanced" onclick="toggleCat(this)" style="padding-left:12px">▸</span>
+<a href="/category/guide/advanced/index.html">📁 advanced (1)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:28px"><a href="/guide/advanced/theme-development.html">主题开发</a></li>
+</ul>
+</li>
+<li style="padding-left:16px"><a href="/guide/migration.html">从 VitePress 迁移</a></li>
+<li style="padding-left:16px"><a href="/guide/faq.html">常见问题</a></li>
+<li style="padding-left:16px"><a href="/guide/deployment.html">部署指南</a></li>
+<li style="padding-left:16px"><a href="/guide/frontmatter.html">Frontmatter 语法</a></li>
+<li style="padding-left:16px"><a href="/guide/configuration.html">配置指南</a></li>
+<li style="padding-left:16px"><a href="/guide/getting-started.html">快速开始</a></li>
+</ul>
+</li>
+<li class="cat-group">
+<span class="cat-toggle" data-cat="reference" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/reference/index.html">📁 reference (3)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:16px"><a href="/reference/cli-commands.html">CLI 命令参考</a></li>
+<li style="padding-left:16px"><a href="/reference/markdown-syntax.html">Markdown 语法速查</a></li>
+<li style="padding-left:16px"><a href="/reference/bun-api.html">Bun API 参考</a></li>
+</ul>
+</li>
+<li class="cat-group">
+<span class="cat-toggle" data-cat="未分类" onclick="toggleCat(this)" style="padding-left:0px">▸</span>
+<a href="/category/未分类/index.html">📁 未分类 (1)</a>
+<ul class="cat-pages" style="display:none">
+<li style="padding-left:16px"><a href="/app-action.html">软件清单整理</a></li>
+</ul>
+</li>
+      </ul>
+    </aside>
+    <div class="main"><div class="breadcrumb"><a href="/index.html">首页</a></div>
+<h1>从 VitePress 迁移</h1>
+<div class="article-meta">
+  <span>📅 2024-08-01</span>
+  <span>📂 <a href="/category/guide/index.html">guide</a></span>
+</div>
+<div class="article-meta"><a href="/tag/guide/index.html" class="tag">guide</a>
+<a href="/tag/migration/index.html" class="tag">migration</a></div>
+<h1 id="从-vitepress-迁移">从 VitePress 迁移</h1>
+<p>如果你已有 VitePress 项目，迁移到 Bun SSG 非常简单。</p>
+<h2 id="目录结构对比">目录结构对比</h2>
+<table>
+<thead>
+<tr><th>VitePress</th><th>Bun SSG</th></tr>
+</thead>
+<tbody>
+<tr><td><code>docs/</code></td><td><code>content/</code></td></tr>
+<tr><td><code>.vitepress/config.js</code></td><td><code>site.config.ts</code></td></tr>
+<tr><td><code>.vitepress/theme/</code></td><td><code>themes/&lt;name&gt;/</code></td></tr>
+</tbody>
+</table>
+<h2 id="迁移步骤">迁移步骤</h2>
+<ol>
+<li>将 <code>docs/</code> 重命名为 <code>content/</code></li>
+<li>创建 <code>site.config.ts</code> 配置文件</li>
+<li>复制 VitePress 主题到 <code>themes/</code> 目录并适配模板语法</li>
+<li>将 VitePress 特有的 Markdown 语法替换为标准 Markdown</li>
+</ol>
+<h2 id="vitepress-特有语法处理">VitePress 特有语法处理</h2>
+<p>VitePress 的一些扩展语法（如 <code>::: tip</code> 容器）在 Bun Markdown 解析器中不被支持。建议替换为标准 Markdown 语法：</p>
+<pre><code class="language-markdown">&lt;!-- VitePress --&gt;
+::: tip 提示
+这是一条提示信息
+:::
+
+&lt;!-- 替换为 --&gt;
+&gt; **提示：** 这是一条提示信息
+</code></pre>
+
+</div>
+    <aside class="right-sidebar" id="right-sidebar">
+      <h3>本页目录</h3><ul><li style="padding-left:0px"><a href="#从-vitepress-迁移">从 VitePress 迁移</a></li><li style="padding-left:12px"><a href="#目录结构对比">目录结构对比</a></li><li style="padding-left:12px"><a href="#迁移步骤">迁移步骤</a></li><li style="padding-left:12px"><a href="#vitepress-特有语法处理">VitePress 特有语法处理</a></li></ul>
+    </aside>
+  </div>
+  <script src="/assets/prism.js"></script>
+  <script src="/assets/script.js"></script>
+</body>
+</html>
